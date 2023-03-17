@@ -1,0 +1,58 @@
+import random
+
+def generate_board():
+
+    # Создаем пустую доску 9x9
+
+    board = [[0 for x in range(9)] for y in range(9)]
+
+    # Заполняем ячейки доски
+
+    for i in range(9):
+
+        # Для каждой строки получаем случайную последовательность 1-9
+
+        seq = list(range(1, 10))
+
+        random.shuffle(seq)
+
+        # Заполняем ячейки каждой строки случайной последовательностью чисел
+
+        for j in range(9):
+
+            board[i][j] = seq[j]
+
+    # Удаляем случайные ячейки для создания головоломки
+
+    for i in range(60):
+
+        x = random.randint(0, 8)
+
+        y = random.randint(0, 8)
+
+        board[x][y] = 0
+
+    return board
+
+def print_board(board):
+
+    for i in range(9):
+
+        for j in range(9):
+
+            print(board[i][j], end=" ")
+
+            if (j + 1) % 3 == 0:
+
+                print("|", end=" ")
+
+        print()
+
+        if (i + 1) % 3 == 0 and i != 8:
+
+            print("---------------------")
+
+board = generate_board()
+
+print_board(board)
+
